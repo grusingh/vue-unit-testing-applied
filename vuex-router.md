@@ -98,4 +98,23 @@ export default {
 }
 ```
 
+### Vue-Router
+Similar to Vuex we will be using a full blown router, but will stub out all the components. This helps us with doing assertions on navigation redirects. 
 
+```javascript
+// mockRouter.js - stubs out all components in passed routes array
+import cloneDeep from 'lodash.clonedeep'
+
+function mockRouterComponents(routes, dummyComponent = { template: '<p>Foo</p>' }) {
+  const routesToClear = cloneDeep(routes)
+  routesToClear.forEach(route => {
+    route.component = dummyComponent
+    if (route.children && route.children.length) {
+      route.children = mockRouterComponents(route.children, dummyComponent)
+    }
+  })
+  return routesToClear
+}
+
+export { mockRouterComponents }
+```
