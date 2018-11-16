@@ -17,6 +17,6 @@ In VueJs world the units that we test are:
 * Store modules
 
 ### Table of contents
-* [Mounting components](/mounting)
-* [Handling Vuex and Vue-Router](/vuex-router)
-* [Unit testing setup](/unit-testing-setup)
+* [Mounting components](/mounting.md)
+* [Handling Vuex and Vue-Router](/vuex-router.md)
+* [Unit testing setup](/unit-testing-setup.md)
