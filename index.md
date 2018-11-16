@@ -15,3 +15,8 @@ In VueJs world the units that we test are:
 * Directives
 * Functions (filters, services, utilities)
 * Store modules
+
+### Table of contents
+* [Mounting components](/mounting)
+* [Handling Vuex and Vue-Router](/vuex-router)
+* [Unit testing setup](/unit-testing-setup)
