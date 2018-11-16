@@ -4,7 +4,7 @@ This guide offers examples on how to approach various uses cases when unit testi
 
 ### Prerequisites
 * Understanding of unit testing
-* Experience with `VueJs`
+* Experience with [VueJs](https://vuejs.org)
 * Some experience with [Vue-test-utils](https://vue-test-utils.vuejs.org/) the offical unit testing library for Vue
 
 ### Quick refresher on unit testing
