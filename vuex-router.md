@@ -3,10 +3,10 @@
 Vuex and Vue-Router make it harder to unit test components that rely on them. We will be using utility functions to make it easier to work with these libraries.
 
 ### Vuex
-We will be using full blown Vuex store but will mock out all the actions and getters. To keep code DRY will piggy backing on actual store withing the application.
+We will be using full blown Vuex store but will mock out all the actions and getters. To keep code DRY will piggy back on actual store within the application.
 
 ```javascript
-// src/modules/index.js - imports all store modules and used when creating store
+// src/modules/index.js - imports all store modules in one central place
 import storeModule1 from './storeModule1'
 import storeModule2 from './storeModule2'
 
@@ -118,3 +118,5 @@ function mockRouterComponents(routes, dummyComponent = { template: '<p>Foo</p>' 
 
 export { mockRouterComponents }
 ```
+
+[home](/index.md) | [previous](/mounting.md) | [next](/unit-testing-setup.md)
