@@ -16,3 +16,5 @@ const wrapper = mount('Component',
   }
 )
 ```
+
+[home](/index.md) | [previous](/index.md) | [next](/vuex-router.md)
