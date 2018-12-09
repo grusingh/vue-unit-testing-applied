@@ -10,7 +10,7 @@ Vue.component('TodoItem', {
 ```
 
 ```javascript
-import helpers from '../helpers'
+import helpers from '#/helpers'
 import TodoItem from '@/components/TodoItem.vue'
 
 describe('TodoItem', () => {
@@ -24,5 +24,3 @@ describe('TodoItem', () => {
   })
 })
 ```
-
-[home](/index.md) | [previous](/vuex-router.md) | [next](/component-with-no-child-components.md)
