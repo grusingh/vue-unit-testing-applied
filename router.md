@@ -8,6 +8,25 @@ Steps to mock Vue Router:
 ### Separate router creation from route declarations
 This separation will enable helper functions in `vue-test-utils-helper` library to discover and mock all routes.  
 
+```javascript
+// src/routes.js
+import Todos from './views/Todos.vue';
+import About from './views/About.vue';
+
+export default [
+  {
+    path: '/',
+    name: 'todos',
+    component: Todos,
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: About,
+  },
+];
+```
+
 ### Helper function to create router for unit testing
 
 ```javascript

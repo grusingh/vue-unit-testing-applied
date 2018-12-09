@@ -7,7 +7,7 @@
 
 The difference between these two options is that `shallowMount` will stub all child components, where as `mount` will render all child components. 
 
-**Note:** If you are using a Vue UI component library such as Vuetify in your application, `shallowMount` will stub out all UI components. In this case you can use `mount` and pass it options to stub out any child components.
+**Note:** If you are using a Vue UI component library such as Vuetify in your application then `shallowMount` will stub out all UI components. In this case you can use `mount` and pass it options to stub out any child components.
 
 ```javascript
 const wrapper = mount('Component',
