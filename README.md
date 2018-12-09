@@ -1,6 +1,6 @@
 ## VueJs Unit Testing Applied
 
-This is a cook book is a collection of recipes applying unit testing to real world VueJs applications.
+This cook book is a collection of recipes applying unit testing to real world VueJs applications.
 
 ### Prerequisites
 * Understanding of unit testing
