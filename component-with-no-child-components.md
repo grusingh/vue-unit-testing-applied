@@ -3,10 +3,22 @@
 Verify that component can be mounted by passing in only required props. 
 
 ```javascript
-Vue.component('TodoItem', {
-  template: '<div data-qa="todoapp-todoitem">{{ todo.name }}</div>',
-  props: ['todo']
-})
+<template>
+  <li data-test="todoitem">
+    <span data-test="todoitem__title">{{ todo.title }}</span>
+  </li>
+</template>
+
+<script>
+export default {
+  props: {
+    todo: {
+      type: Object,
+      required: true,
+    },
+  },
+};
+</script>
 ```
 
 ```javascript
@@ -14,13 +26,16 @@ import helpers from '#/helpers'
 import TodoItem from '@/components/TodoItem.vue'
 
 describe('TodoItem', () => {
-  it('mount', async () => {
+  it('should be able to render', async () => {
     const { wrapper } = await helpers.mount(TodoItem, {
       propsData: {
-        todo: {}
-      }
-    })
-    expect(wrapper.attributes('data-qa')).toBe('todoapp-todoitem')
+        todo: {
+          title: 'test-title',
+        },
+      },
+    });
+    expect(wrapper.attributes('data-test')).toBe('todoitem');
+    expect(wrapper.find('[data-test="todoitem__title"]').text()).toBe('test-title');
   })
 })
 ```
