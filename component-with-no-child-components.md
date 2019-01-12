@@ -1,4 +1,4 @@
-## Unit test component with no child components
+## Recipe: Unit test component with no child components
 
 Verify that component can be rendered. 
 
