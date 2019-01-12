@@ -1,6 +1,6 @@
 ## Unit test component with no child components
 
-Verify that component can be mounted by passing in only required props. 
+Verify that component can be rendered. 
 
 ```javascript
 <template>
