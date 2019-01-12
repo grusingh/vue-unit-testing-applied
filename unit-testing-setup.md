@@ -1,54 +1,46 @@
 ## Project specific mount function
-Each project has a specific set of requirements and dependencies. Therefore its recommended to create a project specific `mount` function that will setup all these dependencies for unit testing and help in keeping code DRY.  
+Every project has a specific set of dependencies. It is recommended to create a project specific `mount` function that will setup all these dependencies for unit testing and thus help in keeping code DRY.  
 
 
 ```javascript
 // helpers/index.js
-import { mount, createLocalVue } from '@vue/test-utils'
-import Vuex from 'vuex'
-import VueRouter from 'vue-router'
-import flushPromises from 'flush-promises'
-import mockStore from './mockStore'
-import mockRouter from './mockRouter'
-import './jestMatchers'
+import { mount, shallowMount, createLocalVue } from '@vue/test-utils';
+import Vuex from 'vuex';
+import VueRouter from 'vue-router';
+import flushPromises from 'flush-promises';
+import mockStore from './mockStore';
+import mockRouter from './mockRouter';
 
-function mockVueRouter (mountOptions, localVue, mocks) {
-  if (!mocks.$route) {
-    localVue.use(VueRouter)
-    mountOptions.router = mockRouter.mock()
-  }
-}
+async function mountComponent(factory, component, options = {}, mockHooks = {}) {
+  const localVue = createLocalVue();
+  localVue.use(Vuex);
 
-async function mountComponent (component, options = {}, mockHooks = {}) {
-  const localVue = createLocalVue()
-  localVue.use(Vuex)
-
-  const { beforeMockStore } = mockHooks
-  const { store, actions, getters } = mockStore.mock(beforeMockStore)
-  const mocks = {
-    ...options.mocks
-  }
+  const { beforeMockStore } = mockHooks;
+  const { store, ...mockedStoreReferences } = mockStore.mock(beforeMockStore);
   const mountOptions = {
     ...options,
     store,
-    localVue,
-    mocks
+    localVue
+  };
+
+  if (!(options.mocks && options.mocks.$route)) {
+    localVue.use(VueRouter);
+    mountOptions.router = mockRouter.mock();
   }
 
-  mockVueRouter(mountOptions, localVue, mocks)
-
-  const wrapper = mount(component, mountOptions)
-  await flushPromises()
+  const wrapper = factory(component, mountOptions);
+  await flushPromises();
 
   return {
     wrapper,
-    actions,
-    getters
-  }
+    store,
+    ...mockedStoreReferences // actions, getters, mutations
+  };
 }
 
 export default {
-  mount: mountComponent
-}
+  mount: (...args) => mountComponent(mount, ...args),
+  shallowMount: (...args) => mountComponent(shallowMount, ...args),
+};
 ```
 
