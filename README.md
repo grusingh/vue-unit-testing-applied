@@ -27,3 +27,4 @@ In VueJs world the units that we test are:
 * [Handling Vue Router ](/router.md)
 * [Project specific mount function](/unit-testing-setup.md)
 * [Recipe: Unit test a component with no child components](/component-with-no-child-components.md)
+* [Recipe: Unit test a component with child components](/component-with-child-components.md)
