@@ -12,51 +12,42 @@ This separation will enable helper functions in `vue-test-utils-helper` library 
 
 ```javascript
 // src/modules/index.js - imports all store modules in one central place
-import storeModule1 from './storeModule1'
-import storeModule2 from './storeModule2'
+import authentication from './authentication';
 
-export default
-{
-  storeModule1,
-  storeModule2,
-}
+export default {
+  authentication,
+};
 ```
 
 ### Helper function to create store for unit testing
 
 ```javascript
 // tests/unit/helpers/mockStore.js - create store for unit testing 
-import Vuex from 'vuex'
-import modules from '@/modules'
-import mockedGetters from './mockedGetters'
-import { mockStoreActionsAndGetters, mockStoreMutations } from 'vue-test-utils-helpers'
+import Vuex from 'vuex';
+import modules from '@/modules';
+import { mockStoreGetters, mockStoreActions, mockStoreMutations } from 'vue-test-utils-helpers';
 
 export default {
-  mock (beforeMockStore) {  
-    const mocked = mockStoreActionsAndGetters({
-      modules,
-      mockedGetters,
-      jestFn: jest.fn
-    })
-
-    const { mutations } = mockStoreMutations({ modules, jestFn: jest.fn })
+  mock(beforeMockStore) {
+    const { getters } = mockStoreGetters({ modules, mockedGetters: {}, jestFn: jest.fn });
+    const { mutations } = mockStoreMutations({ modules, jestFn: jest.fn });
+    const { actions } = mockStoreActions({ modules, jestFn: jest.fn });
+    const mocked = { getters, mutations, actions };
 
     // hook to allow overrides before store is created
-    beforeMockStore && beforeMockStore(mocked)
+    beforeMockStore && beforeMockStore(mocked);
 
     const store = new Vuex.Store({
       modules,
-      strict: true
-    })
+      strict: true,
+    });
 
-    // return store and references to mocked actions, getters and mutations
     return {
       store,
       ...mocked,
-      mutations
-    }
-  }
-}
+    };
+  },
+};
 ```
 
 ### Override `getters` to provide default state
@@ -65,10 +56,7 @@ export default {
 // test/unit/helpers/mockedGetters.js - override return value for getters 
 
 export default {
-  isAuthenticated: jest.fn().mockReturnValue(true),
-  'auth/loggedInUser': jest.fn().mockReturnValue({
-    name: 'foo',
-    role: 'admin'
-  })
+  'isLoggedIn': jest.fn().mockReturnValue(true),
+  'name': jest.fn().mockReturnValue('guest')
 }
 ```
