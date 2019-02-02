@@ -28,3 +28,4 @@ In VueJs world the units that we test are:
 * [Project specific mount function](/unit-testing-setup.md)
 * [Recipe: Unit test a component with no child components](/component-with-no-child-components.md)
 * [Recipe: Unit test a component with child components](/component-with-child-components.md)
+* [Recipe: Unit test component with keup event](/component-with-keyup-event.md)
