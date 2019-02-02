@@ -29,3 +29,4 @@ In VueJs world the units that we test are:
 * [Recipe: Unit test a component with no child components](/component-with-no-child-components.md)
 * [Recipe: Unit test a component with child components](/component-with-child-components.md)
 * [Recipe: Unit test component with keup event](/component-with-keyup-event.md)
+* [Recipe: Unit test component with router link](/component-with-router-link.md)
